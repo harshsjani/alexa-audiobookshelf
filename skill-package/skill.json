@@ -1,0 +1,63 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "Control your AudioBookshelf library with voice commands",
+          "examplePhrases": [
+            "Alexa, open audio bookshelf",
+            "Alexa, ask audio bookshelf to continue my book",
+            "Alexa, tell audio bookshelf to play Ready Player One"
+          ],
+          "keywords": [
+            "audiobook",
+            "audiobookshelf",
+            "books",
+            "reading",
+            "library",
+            "podcast"
+          ],
+          "name": "AudioBookshelf",
+          "description": "AudioBookshelf is a custom Alexa skill that allows you to control your self-hosted AudioBookshelf server using voice commands. Listen to your audiobooks and podcasts hands-free.\n\nFeatures:\n- Play audiobooks by title\n- Continue where you left off\n- Automatic progress tracking\n- Search your library\n\nRequirements:\n- An AudioBookshelf server (v2.0 or later)\n- Your server must be accessible via HTTPS\n- An AudioBookshelf account with API access\n\nSetup:\n1. Install and configure your AudioBookshelf server\n2. Enable the skill and link your AudioBookshelf account\n3. Start listening with voice commands!\n\nExample commands:\n- 'Alexa, ask audio bookshelf to continue my book'\n- 'Alexa, tell audio bookshelf to play The Hobbit'\n- 'Alexa, ask audio bookshelf to pause'\n\nNote: This is a custom skill for self-hosted AudioBookshelf servers. You must have your own AudioBookshelf instance to use this skill.",
+          "smallIconUri": "https://via.placeholder.com/108x108.png",
+          "largeIconUri": "https://via.placeholder.com/512x512.png"
+        }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "1. Link your AudioBookshelf account in the Alexa app\n2. Ensure your AudioBookshelf server is accessible via HTTPS\n3. Say 'Alexa, open audio bookshelf'\n4. Try commands like 'continue my book' or 'play [book title]'",
+      "category": "EDUCATION_AND_REFERENCE",
+      "distributionCountries": []
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:us-east-1:123456789012:function:alexa-audiobookshelf"
+        },
+        "interfaces": [
+          {
+            "type": "AUDIO_PLAYER"
+          }
+        ]
+      }
+    },
+    "manifestVersion": "1.0",
+    "permissions": [
+      {
+        "name": "alexa::profile:email:read"
+      }
+    ],
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "locales": {
+        "en-US": {
+          "privacyPolicyUrl": "https://example.com/privacy-policy",
+          "termsOfUseUrl": "https://example.com/terms-of-use"
+        }
+      },
+      "isExportCompliant": true,
+      "containsAds": false,
+      "isChildDirected": false,
+      "usesPersonalInfo": false
+    }
+  }
+}

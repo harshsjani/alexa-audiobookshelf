@@ -1,0 +1,22 @@
+{
+  "name": "alexa-audiobookshelf-skill",
+  "version": "1.0.0",
+  "description": "Alexa skill for AudioBookshelf integration",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests/**/*.test.js",
+    "deploy": "ask deploy"
+  },
+  "keywords": ["alexa", "audiobookshelf", "audiobooks", "podcasts"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ask-sdk-core": "^2.14.0",
+    "ask-sdk-model": "^1.50.0",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0",
+    "chai": "^4.3.10"
+  }
+}
