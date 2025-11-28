@@ -1,0 +1,109 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "audio bookshelf",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.PauseIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.ResumeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "PlayBookIntent",
+          "slots": [
+            {
+              "name": "bookName",
+              "type": "AMAZON.Book"
+            }
+          ],
+          "samples": [
+            "play {bookName}",
+            "start {bookName}",
+            "play the book {bookName}",
+            "start playing {bookName}",
+            "I want to listen to {bookName}",
+            "listen to {bookName}",
+            "read {bookName}",
+            "start reading {bookName}"
+          ]
+        },
+        {
+          "name": "ContinueBookIntent",
+          "slots": [],
+          "samples": [
+            "continue",
+            "continue my book",
+            "continue my audiobook",
+            "continue where I left off",
+            "resume my book",
+            "keep playing",
+            "continue playing",
+            "play my current book",
+            "continue listening",
+            "what was I listening to"
+          ]
+        }
+      ],
+      "types": []
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "PlayBookIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "bookName",
+              "type": "AMAZON.Book",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1608574078790.1336148598341"
+              }
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.1608574078790.1336148598341",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "What book would you like to play?"
+          },
+          {
+            "type": "PlainText",
+            "value": "Which book would you like to listen to?"
+          }
+        ]
+      }
+    ]
+  }
+}
