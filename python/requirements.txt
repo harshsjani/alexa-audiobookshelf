@@ -1,0 +1,8 @@
+flask==3.0.0
+ask-sdk-core==1.19.0
+ask-sdk-model==1.82.0
+ask-sdk-webservice-support==1.2.0
+requests==2.31.0
+python-dotenv==1.0.0
+gunicorn==21.2.0
+cryptography==41.0.7
