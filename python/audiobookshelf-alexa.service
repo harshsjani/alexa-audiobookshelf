@@ -1,0 +1,29 @@
+[Unit]
+Description=AudioBookshelf Alexa Skill
+After=network.target
+
+[Service]
+Type=notify
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/alexa-skill
+Environment="PATH=/var/www/alexa-skill/venv/bin"
+Environment="PYTHONUNBUFFERED=1"
+ExecStart=/var/www/alexa-skill/venv/bin/gunicorn \
+    --bind 127.0.0.1:5000 \
+    --workers 4 \
+    --timeout 60 \
+    --access-logfile /var/log/alexa-skill/access.log \
+    --error-logfile /var/log/alexa-skill/error.log \
+    wsgi:app
+
+# Restart on failure
+Restart=on-failure
+RestartSec=5s
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

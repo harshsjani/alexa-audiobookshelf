@@ -10,49 +10,95 @@ An Alexa custom skill that enables voice control of your self-hosted AudioBooksh
 - ⏯️ **Playback controls**: Pause, resume, and control playback with standard Alexa commands
 - 🔐 **Secure authentication**: JWT-based authentication with AudioBookshelf API
 
+## Deployment Options
+
+This skill can be deployed in two ways:
+
+### 🔷 Option 1: AWS Lambda (Node.js)
+- Serverless deployment using AWS Lambda
+- Free tier available
+- Auto-scaling
+- Located in `lambda/` directory
+- See setup instructions below
+
+### 🔶 Option 2: Self-Hosted (Python)
+- Deploy on your own web server
+- No AWS required
+- Full control and easier debugging
+- Works with CloudPanel, cPanel, or any Linux server
+- Located in `python/` directory
+- **[See Python Deployment Guide →](python/README.md)**
+
+**Choose the option that best fits your needs!**
+
+---
+
 ## Requirements
 
+### For AWS Lambda Deployment:
 - Amazon Developer Account
-- AWS Account (for Lambda hosting)
-- AudioBookshelf server (v2.0 or later)
-- Your AudioBookshelf server must be accessible via HTTPS
-- Node.js 18.x or later (for local development)
+- AWS Account
+- AudioBookshelf server (v2.0 or later) accessible via HTTPS
+- Node.js 18.x or later
+
+### For Self-Hosted Deployment:
+- Amazon Developer Account
+- Web server with HTTPS/SSL
+- AudioBookshelf server (v2.0 or later) accessible via HTTPS
+- Python 3.8 or later
 
 ## Quick Start
 
-### 1. Clone the Repository
+> **Note**: These instructions are for AWS Lambda deployment. For self-hosted Python deployment, see **[python/README.md](python/README.md)**
+
+### AWS Lambda Deployment
+
+#### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/yourusername/alexa-audiobookshelf.git
 cd alexa-audiobookshelf
 ```
 
-### 2. Install Dependencies
+#### 2. Install Dependencies
 
 ```bash
 cd lambda
 npm install
 ```
 
-### 3. Configure Environment
+#### 3. Configure Environment
 
 ```bash
 cp .env.example .env
 # Edit .env with your AudioBookshelf server details
 ```
 
-### 4. Setup ASK CLI
+#### 4. Setup ASK CLI
 
 ```bash
 npm install -g ask-cli
 ask configure
 ```
 
-### 5. Deploy the Skill
+#### 5. Deploy the Skill
 
 ```bash
 ask deploy
 ```
+
+### Self-Hosted Python Deployment
+
+For deploying on your own server (CloudPanel, cPanel, VPS, etc.):
+
+```bash
+cd python
+bash setup.sh
+# Edit .env with your details
+python app.py
+```
+
+**See [python/DEPLOYMENT.md](python/DEPLOYMENT.md) for complete instructions.**
 
 ## Configuration
 
