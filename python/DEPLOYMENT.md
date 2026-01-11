@@ -124,7 +124,7 @@ gunicorn --bind 127.0.0.1:5000 --workers 4 wsgi:app
 ### Step 10: Test the Endpoint
 
 ```bash
-curl https://alexa.yourdomain.com/health
+curl http://alx.sgrslab.in/health
 ```
 
 Should return:
