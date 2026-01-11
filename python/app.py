@@ -5,6 +5,7 @@ Self-hosted alternative to AWS Lambda
 
 import os
 import logging
+import json
 from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 
@@ -13,6 +14,8 @@ from ask_sdk_core.dispatch_components import AbstractRequestHandler, AbstractExc
 from ask_sdk_core.utils import is_request_type, is_intent_name
 from ask_sdk_core.handler_input import HandlerInput
 from ask_sdk_model import Response
+from ask_sdk_core.serialize import DefaultSerializer
+from ask_sdk_model import RequestEnvelope
 from ask_sdk_model.interfaces.audioplayer import (
     PlayDirective, PlayBehavior, AudioItem, Stream, AudioItemMetadata,
     StopDirective
@@ -519,17 +522,27 @@ def alexa_endpoint():
     Receives requests from Alexa and routes them to the skill
     """
     try:
-        # Get request body
-        request_body = request.get_json()
+        # Get request as dict
+        request_envelope = request.get_json()
+        
+        logger.info(f"Request type: {request_envelope.get('request', {}).get('type')}")
 
-        logger.info(f"Request: {request_body.get('request', {}).get('type')}")
-
-        # Invoke skill
-        response_body = skill.invoke(request_body, None)
-
-        logger.info(f"Response: {response_body}")
-
-        return jsonify(response_body)
+        # Deserialize into proper RequestEnvelope object
+        serializer = DefaultSerializer()
+        request_envelope_obj = serializer.deserialize(
+            payload=json.dumps(request_envelope),
+            obj_type=RequestEnvelope
+        )
+        
+        # Invoke skill - returns ResponseEnvelope object
+        response_obj = skill.invoke(request_envelope_obj, None)
+        
+        # Serialize response back to dict
+        response_dict = serializer.serialize(response_obj)
+        
+        logger.info(f"Response generated")
+        
+        return jsonify(response_dict)
 
     except Exception as e:
         logger.error(f"Error processing request: {e}", exc_info=True)
